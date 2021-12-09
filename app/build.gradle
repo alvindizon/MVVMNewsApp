@@ -7,6 +7,10 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+// Load local properties with API keys
+def localProperties = new Properties()
+localProperties.load(new FileInputStream(rootProject.file("local.properties")))
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -21,9 +25,13 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", localProperties['API_KEY'])
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "API_KEY", localProperties['API_KEY'])
         }
     }
     compileOptions {
