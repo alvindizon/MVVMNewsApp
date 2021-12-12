@@ -4,6 +4,7 @@ package com.androiddevs.mvvmnewsapp.di
 import com.androiddevs.mvvmnewsapp.BuildConfig
 import com.androiddevs.mvvmnewsapp.data.api.NewsApi
 import com.androiddevs.mvvmnewsapp.data.network.interceptor.AuthorizationInterceptor
+import com.androiddevs.mvvmnewsapp.data.network.interceptor.ConnectivityInterceptor
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -34,10 +35,12 @@ object NetworkModule {
     @Singleton
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        authorizationInterceptor: AuthorizationInterceptor
+        authorizationInterceptor: AuthorizationInterceptor,
+        connectivityInterceptor: ConnectivityInterceptor
     ): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(httpLoggingInterceptor)
         .addInterceptor(authorizationInterceptor)
+        .addInterceptor(connectivityInterceptor)
         .build()
 
     @Provides
