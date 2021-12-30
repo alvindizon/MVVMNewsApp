@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.ui.fragments
+package com.androiddevs.mvvmnewsapp.ui.search
 
 import androidx.fragment.app.Fragment
 import com.androiddevs.mvvmnewsapp.R
