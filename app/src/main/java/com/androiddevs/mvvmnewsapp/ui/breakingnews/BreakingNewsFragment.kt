@@ -37,7 +37,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                 errorListener = {
                     Snackbar.make(
                         requireView(),
-                        "\uD83D\uDE28 Wooops $it",
+                        "Error: ${it.message}",
                         Snackbar.LENGTH_LONG
                     ).show()
                 }
