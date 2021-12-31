@@ -20,6 +20,8 @@ interface NewsRepo {
     suspend fun saveArticle(article: com.androiddevs.mvvmnewsapp.data.db.model.Article): Long
 
     fun getSavedNews() : Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>>
+
+    fun searchNews(searchQuery: String): Flow<PagingData<Article>>
 }
 
 @ExperimentalPagingApi
@@ -44,4 +46,14 @@ class NewsRepoImpl @Inject constructor(
 
     override fun getSavedNews(): Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>> =
         db.articleDao().getAllArticles()
+
+    override fun searchNews(searchQuery: String): Flow<PagingData<Article>> {
+        return Pager(
+            config = PagingConfig(PAGE_SIZE),
+            remoteMediator = null,
+            pagingSourceFactory = {
+                ArticlePagingSource(newsApi, searchQuery)
+            }
+        ).flow
+    }
 }

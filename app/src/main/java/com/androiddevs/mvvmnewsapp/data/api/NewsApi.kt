@@ -17,4 +17,14 @@ interface NewsApi {
         @Query("page")
         pageNumber: Int = 1
     ) : NewsResponse
+
+    @GET("v2/everything")
+    suspend fun searchForNews(
+        @Query("q")
+        searchQuery: String,
+        @Query("pageSize")
+        pageSize: Int = PAGE_SIZE,
+        @Query("page")
+        pageNumber: Int = 1
+    ) : NewsResponse
 }
