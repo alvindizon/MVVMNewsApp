@@ -30,7 +30,7 @@ class NewsAdapter(val listener: (Article) -> Unit) :
         fun bind(article: Article) {
             binding.apply {
                 Glide.with(binding.ivArticleImage).load(article.urlToImage).into(ivArticleImage)
-                tvSource.text = article.source.name
+                tvSource.text = article.source?.name
                 tvTitle.text = article.title
                 tvDescription.text = article.description
                 tvPublishedAt.text = article.publishedAt
