@@ -1,6 +1,8 @@
 package com.androiddevs.mvvmnewsapp.di
 
 
+import android.content.Context
+import android.net.ConnectivityManager
 import com.androiddevs.mvvmnewsapp.BuildConfig
 import com.androiddevs.mvvmnewsapp.data.api.NewsApi
 import com.androiddevs.mvvmnewsapp.data.network.interceptor.AuthorizationInterceptor
@@ -9,6 +11,7 @@ import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +24,12 @@ import javax.inject.Singleton
 object NetworkModule {
 
     private const val API_URL = "https://newsapi.org/"
+
+    @Provides
+    @Singleton
+    fun provideConnectivityManager(@ApplicationContext context: Context): ConnectivityManager {
+        return context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    }
 
     @Provides
     @Singleton
@@ -42,6 +51,10 @@ object NetworkModule {
         .addInterceptor(authorizationInterceptor)
         .addInterceptor(connectivityInterceptor)
         .build()
+
+    @Provides
+    @Singleton
+    fun provideMoshi(): Moshi = Moshi.Builder().build()
 
     @Provides
     @Singleton
