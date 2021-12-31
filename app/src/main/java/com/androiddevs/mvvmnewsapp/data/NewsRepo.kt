@@ -9,6 +9,8 @@ import com.androiddevs.mvvmnewsapp.data.api.PAGE_SIZE
 import com.androiddevs.mvvmnewsapp.data.api.model.Article
 import com.androiddevs.mvvmnewsapp.data.paging.ArticlePagingSource
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
+import javax.inject.Singleton
 
 interface NewsRepo {
 
@@ -16,7 +18,8 @@ interface NewsRepo {
 }
 
 @ExperimentalPagingApi
-class NewsRepoImpl(private val newsApi: NewsApi) : NewsRepo {
+@Singleton
+class NewsRepoImpl @Inject constructor(private val newsApi: NewsApi) : NewsRepo {
 
     override fun getBreakingNews(): Flow<PagingData<Article>> {
         return Pager(

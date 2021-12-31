@@ -35,6 +35,8 @@ class NewsAdapter(val listener: (Article) -> Unit) :
                 tvDescription.text = article.description
                 tvPublishedAt.text = article.publishedAt
             }
+
+            itemView.setOnClickListener { listener.invoke(article) }
         }
     }
 
