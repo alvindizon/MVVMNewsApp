@@ -1,8 +1,8 @@
 package com.androiddevs.mvvmnewsapp.data.db
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.androiddevs.mvvmnewsapp.data.db.model.Article
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ArticleDao {
@@ -11,7 +11,7 @@ interface ArticleDao {
     suspend fun upsert(article: Article): Long
 
     @Query("SELECT * FROM articles")
-    fun getAllArticles() : LiveData<List<Article>>
+    fun getAllArticles() : Flow<List<Article>>
 
     @Delete
     suspend fun deleteArticle(article: Article)

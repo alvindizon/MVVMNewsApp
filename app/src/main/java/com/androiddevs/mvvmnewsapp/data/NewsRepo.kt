@@ -18,6 +18,8 @@ interface NewsRepo {
     fun getBreakingNews(): Flow<PagingData<Article>>
 
     suspend fun saveArticle(article: com.androiddevs.mvvmnewsapp.data.db.model.Article): Long
+
+    fun getSavedNews() : Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>>
 }
 
 @ExperimentalPagingApi
@@ -40,4 +42,6 @@ class NewsRepoImpl @Inject constructor(
     override suspend fun saveArticle(article: com.androiddevs.mvvmnewsapp.data.db.model.Article) =
         db.articleDao().upsert(article)
 
+    override fun getSavedNews(): Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>> =
+        db.articleDao().getAllArticles()
 }
