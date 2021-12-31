@@ -1,15 +1,17 @@
 package com.androiddevs.mvvmnewsapp.ui.search
 
-import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import com.androiddevs.mvvmnewsapp.data.NewsRepo
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.flow.debounce
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import javax.inject.Inject
 
-private const val TAG = "SearchNewsViewModel"
+private const val CHAR_LIMIT = 3
 
 @HiltViewModel
 class SearchNewsViewModel @Inject constructor(
@@ -19,8 +21,12 @@ class SearchNewsViewModel @Inject constructor(
 
     val searchQuery = state.getLiveData("searchQuery", "")
 
-    val onQuerySearched = searchQuery.asFlow().flatMapLatest {
-        Log.d(TAG, "query: $it")
-        newsRepo.searchNews(it)
-    }
+    @FlowPreview
+    val onQuerySearched =
+        searchQuery.asFlow()
+            .debounce(300L)
+            .filter { it.length >= CHAR_LIMIT }
+            .flatMapLatest {
+                newsRepo.searchNews(it)
+            }
 }
