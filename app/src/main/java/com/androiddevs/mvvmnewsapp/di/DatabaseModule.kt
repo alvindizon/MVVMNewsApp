@@ -2,9 +2,7 @@ package com.androiddevs.mvvmnewsapp.di
 
 import android.content.Context
 import androidx.room.Room
-import androidx.room.TypeConverters
 import com.androiddevs.mvvmnewsapp.data.db.ArticleDatabase
-import com.androiddevs.mvvmnewsapp.data.db.Converters
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,7 +12,6 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-@TypeConverters(Converters::class)
 object DatabaseModule {
 
     @Provides
