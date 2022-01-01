@@ -10,15 +10,16 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.androiddevs.mvvmnewsapp.R
-import com.androiddevs.mvvmnewsapp.data.util.toDb
 import com.androiddevs.mvvmnewsapp.databinding.FragmentSearchNewsBinding
 import com.androiddevs.mvvmnewsapp.ui.NewsAdapter
 import com.androiddevs.mvvmnewsapp.ui.utils.setLoadStateListener
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
+@FlowPreview
 class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
     private val viewModel: SearchNewsViewModel by viewModels()
@@ -27,7 +28,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         val binding = FragmentSearchNewsBinding.bind(view)
 
         val adapter = NewsAdapter {
-            val bundle = bundleOf("article" to it.toDb())
+            val bundle = bundleOf("article" to it)
             findNavController().navigate(
                 R.id.action_searchNewsFragment_to_articleFragment,
                 bundle
@@ -36,7 +37,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
 
         binding.apply {
             rvSearchNews.adapter = adapter
-            adapter.setLoadStateListener (
+            adapter.setLoadStateListener(
                 isNotLoading = { rvSearchNews.isVisible = it },
                 isLoading = { paginationProgressBar.isVisible = it },
                 errorListener = {
@@ -49,7 +50,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             )
 
             etSearch.addTextChangedListener { editable ->
-                if(!editable.isNullOrEmpty()) {
+                if (!editable.isNullOrEmpty()) {
                     viewModel.searchQuery.value = editable.toString()
                 }
             }

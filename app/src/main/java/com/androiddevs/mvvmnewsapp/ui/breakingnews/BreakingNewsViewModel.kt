@@ -4,16 +4,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.androiddevs.mvvmnewsapp.data.NewsRepo
-import com.androiddevs.mvvmnewsapp.data.api.model.Article
+import com.androiddevs.mvvmnewsapp.ui.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @HiltViewModel
-class BreakingNewsViewModel @Inject constructor(private val newsRepo: NewsRepo) : ViewModel() {
+class BreakingNewsViewModel @Inject constructor(private val getBreakingNewsUseCase: GetBreakingNewsUseCase) :
+    ViewModel() {
 
     fun onViewCreated(): Flow<PagingData<Article>> {
-        return newsRepo.getBreakingNews().cachedIn(viewModelScope)
+        return getBreakingNewsUseCase.getBreakingNews().cachedIn(viewModelScope)
     }
 }

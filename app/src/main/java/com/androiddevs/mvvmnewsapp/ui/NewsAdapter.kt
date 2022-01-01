@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.androiddevs.mvvmnewsapp.data.api.model.Article
 import com.androiddevs.mvvmnewsapp.databinding.ItemArticlePreviewBinding
 import com.bumptech.glide.Glide
 
@@ -30,7 +29,7 @@ class NewsAdapter(val listener: (Article) -> Unit) :
         fun bind(article: Article) {
             binding.apply {
                 Glide.with(binding.ivArticleImage).load(article.urlToImage).into(ivArticleImage)
-                tvSource.text = article.source?.name
+                tvSource.text = article.source
                 tvTitle.text = article.title
                 tvDescription.text = article.description
                 tvPublishedAt.text = article.publishedAt
@@ -52,16 +51,3 @@ class NewsAdapter(val listener: (Article) -> Unit) :
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

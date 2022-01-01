@@ -28,7 +28,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
         val binding = FragmentBreakingNewsBinding.bind(view)
 
         val adapter = NewsAdapter {
-            val bundle = bundleOf("article" to it.toDb())
+            val bundle = bundleOf("article" to it)
             findNavController().navigate(
                 R.id.action_breakingNewsFragment_to_articleFragment,
                 bundle

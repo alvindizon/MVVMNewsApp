@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.androiddevs.mvvmnewsapp.R
-import com.androiddevs.mvvmnewsapp.data.util.toDb
 import com.androiddevs.mvvmnewsapp.databinding.FragmentSavedNewsBinding
 import com.androiddevs.mvvmnewsapp.ui.NewsAdapter
 import com.androiddevs.mvvmnewsapp.ui.utils.setLoadStateListener
@@ -27,7 +26,7 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
         val binding = FragmentSavedNewsBinding.bind(view)
 
         val adapter = NewsAdapter {
-            val bundle = bundleOf("article" to it.toDb())
+            val bundle = bundleOf("article" to it)
             findNavController().navigate(
                 R.id.action_savedNewsFragment_to_articleFragment,
                 bundle

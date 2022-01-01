@@ -6,8 +6,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.androiddevs.mvvmnewsapp.data.api.NewsApi
 import com.androiddevs.mvvmnewsapp.data.api.PAGE_SIZE
-import com.androiddevs.mvvmnewsapp.data.api.model.Article
+import com.androiddevs.mvvmnewsapp.data.api.model.ApiArticle
 import com.androiddevs.mvvmnewsapp.data.db.ArticleDatabase
+import com.androiddevs.mvvmnewsapp.data.db.model.DbArticle
 import com.androiddevs.mvvmnewsapp.data.paging.ArticlePagingSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -15,13 +16,13 @@ import javax.inject.Singleton
 
 interface NewsRepo {
 
-    fun getBreakingNews(): Flow<PagingData<Article>>
+    fun getBreakingNews(): Flow<PagingData<ApiArticle>>
 
-    suspend fun saveArticle(article: com.androiddevs.mvvmnewsapp.data.db.model.Article): Long
+    suspend fun saveArticle(article: DbArticle): Long
 
-    fun getSavedNews() : Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>>
+    fun getSavedNews() : Flow<List<DbArticle>>
 
-    fun searchNews(searchQuery: String): Flow<PagingData<Article>>
+    fun searchNews(searchQuery: String): Flow<PagingData<ApiArticle>>
 }
 
 @ExperimentalPagingApi
@@ -31,7 +32,7 @@ class NewsRepoImpl @Inject constructor(
     private val db: ArticleDatabase
 ) : NewsRepo {
 
-    override fun getBreakingNews(): Flow<PagingData<Article>> {
+    override fun getBreakingNews(): Flow<PagingData<ApiArticle>> {
         return Pager(
             config = PagingConfig(PAGE_SIZE),
             remoteMediator = null,
@@ -41,13 +42,13 @@ class NewsRepoImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun saveArticle(article: com.androiddevs.mvvmnewsapp.data.db.model.Article) =
+    override suspend fun saveArticle(article: DbArticle) =
         db.articleDao().upsert(article)
 
-    override fun getSavedNews(): Flow<List<com.androiddevs.mvvmnewsapp.data.db.model.Article>> =
+    override fun getSavedNews(): Flow<List<DbArticle>> =
         db.articleDao().getAllArticles()
 
-    override fun searchNews(searchQuery: String): Flow<PagingData<Article>> {
+    override fun searchNews(searchQuery: String): Flow<PagingData<ApiArticle>> {
         return Pager(
             config = PagingConfig(PAGE_SIZE),
             remoteMediator = null,

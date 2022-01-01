@@ -3,14 +3,14 @@ package com.androiddevs.mvvmnewsapp.data.paging
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.androiddevs.mvvmnewsapp.data.api.NewsApi
-import com.androiddevs.mvvmnewsapp.data.api.model.Article
+import com.androiddevs.mvvmnewsapp.data.api.model.ApiArticle
 
 class ArticlePagingSource(private val newsApi: NewsApi, private val searchQuery: String? = null) :
-    PagingSource<Int, Article>() {
+    PagingSource<Int, ApiArticle>() {
 
-    override fun getRefreshKey(state: PagingState<Int, Article>): Int? = null
+    override fun getRefreshKey(state: PagingState<Int, ApiArticle>): Int? = null
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Article> {
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ApiArticle> {
         return try {
             val nextPageNumber = params.key ?: 1
 
