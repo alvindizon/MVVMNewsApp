@@ -5,14 +5,29 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.article.SaveArticleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SavedNewsViewModel @Inject constructor(private val saveNewsToDbUseCase: SaveNewsToDbUseCase) :
+class SavedNewsViewModel @Inject constructor(
+    private val getSavedNewsUseCase: GetSavedNewsUseCase,
+    private val deleteArticleUseCase: DeleteArticleUseCase,
+    private val saveArticleUseCase: SaveArticleUseCase
+) :
     ViewModel() {
 
     fun onViewCreated(): Flow<PagingData<Article>> =
-        saveNewsToDbUseCase.getSavedNews().cachedIn(viewModelScope)
+        getSavedNewsUseCase.getSavedNews().cachedIn(viewModelScope)
+
+
+    fun onItemSwipe(article: Article) = viewModelScope.launch {
+        deleteArticleUseCase.deleteArticle(article)
+    }
+
+    fun onUndoClick(article: Article) = viewModelScope.launch {
+        saveArticleUseCase.saveArticle(article)
+    }
 }

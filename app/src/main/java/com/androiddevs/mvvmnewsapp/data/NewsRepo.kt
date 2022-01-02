@@ -20,9 +20,11 @@ interface NewsRepo {
 
     suspend fun saveArticle(article: DbArticle): Long
 
-    fun getSavedNews() : Flow<List<DbArticle>>
+    fun getSavedNews(): Flow<List<DbArticle>>
 
     fun searchNews(searchQuery: String): Flow<PagingData<ApiArticle>>
+
+    suspend fun deleteArticle(article: DbArticle)
 }
 
 @ExperimentalPagingApi
@@ -57,4 +59,7 @@ class NewsRepoImpl @Inject constructor(
             }
         ).flow
     }
+
+    override suspend fun deleteArticle(article: DbArticle) =
+        db.articleDao().deleteArticle(article)
 }

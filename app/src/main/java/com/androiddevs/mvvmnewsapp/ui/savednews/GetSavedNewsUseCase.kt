@@ -10,7 +10,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class SaveNewsToDbUseCase @Inject constructor(private val newsRepo: NewsRepo){
+class GetSavedNewsUseCase @Inject constructor(private val newsRepo: NewsRepo){
 
     fun getSavedNews(): Flow<PagingData<Article>> {
         return newsRepo.getSavedNews().map { dbList ->

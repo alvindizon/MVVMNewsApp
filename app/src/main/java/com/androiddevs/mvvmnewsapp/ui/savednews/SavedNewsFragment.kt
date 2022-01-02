@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.databinding.FragmentSavedNewsBinding
 import com.androiddevs.mvvmnewsapp.ui.NewsAdapter
@@ -32,6 +34,32 @@ class SavedNewsFragment : Fragment(R.layout.fragment_saved_news) {
                 bundle
             )
         }
+
+        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                // if true then it means item changed position--for our usecase we'll just be deleting items so no need to indicate
+                // that item has been moved
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.absoluteAdapterPosition
+                adapter.peek(position)?.let { article ->
+                    viewModel.onItemSwipe(article)
+                    Snackbar.make(view, "Successfully deleted article", Snackbar.LENGTH_LONG).apply {
+                        setAction("Undo") {
+                            viewModel.onUndoClick(article)
+                        }
+                        show()
+                    }
+                }
+            }
+        }
+        ).attachToRecyclerView(binding.rvSavedNews)
 
         binding.apply {
             rvSavedNews.adapter = adapter
