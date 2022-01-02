@@ -10,22 +10,10 @@ import com.androiddevs.mvvmnewsapp.data.api.model.ApiArticle
 import com.androiddevs.mvvmnewsapp.data.db.ArticleDatabase
 import com.androiddevs.mvvmnewsapp.data.db.model.DbArticle
 import com.androiddevs.mvvmnewsapp.data.paging.ArticlePagingSource
+import com.androiddevs.mvvmnewsapp.domain.NewsRepo
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
-
-interface NewsRepo {
-
-    fun getBreakingNews(): Flow<PagingData<ApiArticle>>
-
-    suspend fun saveArticle(article: DbArticle): Long
-
-    fun getSavedNews(): Flow<List<DbArticle>>
-
-    fun searchNews(searchQuery: String): Flow<PagingData<ApiArticle>>
-
-    suspend fun deleteArticle(article: DbArticle)
-}
 
 @ExperimentalPagingApi
 @Singleton

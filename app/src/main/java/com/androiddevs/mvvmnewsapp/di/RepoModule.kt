@@ -1,7 +1,7 @@
 package com.androiddevs.mvvmnewsapp.di
 
 import androidx.paging.ExperimentalPagingApi
-import com.androiddevs.mvvmnewsapp.data.NewsRepo
+import com.androiddevs.mvvmnewsapp.domain.NewsRepo
 import com.androiddevs.mvvmnewsapp.data.NewsRepoImpl
 import dagger.Binds
 import dagger.Module

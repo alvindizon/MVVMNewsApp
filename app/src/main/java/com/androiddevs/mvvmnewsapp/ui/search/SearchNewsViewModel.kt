@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.paging.PagingData
+import com.androiddevs.mvvmnewsapp.domain.usecase.SearchNewsUseCase
 import com.androiddevs.mvvmnewsapp.ui.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview

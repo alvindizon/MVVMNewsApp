@@ -1,7 +1,7 @@
-package com.androiddevs.mvvmnewsapp.ui.savednews
+package com.androiddevs.mvvmnewsapp.domain.usecase
 
 import androidx.paging.PagingData
-import com.androiddevs.mvvmnewsapp.data.NewsRepo
+import com.androiddevs.mvvmnewsapp.domain.NewsRepo
 import com.androiddevs.mvvmnewsapp.data.util.toUi
 import com.androiddevs.mvvmnewsapp.ui.Article
 import kotlinx.coroutines.flow.Flow

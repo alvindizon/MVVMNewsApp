@@ -1,6 +1,6 @@
-package com.androiddevs.mvvmnewsapp.ui.article
+package com.androiddevs.mvvmnewsapp.domain.usecase
 
-import com.androiddevs.mvvmnewsapp.data.NewsRepo
+import com.androiddevs.mvvmnewsapp.domain.NewsRepo
 import com.androiddevs.mvvmnewsapp.data.util.toDb
 import com.androiddevs.mvvmnewsapp.ui.Article
 import javax.inject.Inject
