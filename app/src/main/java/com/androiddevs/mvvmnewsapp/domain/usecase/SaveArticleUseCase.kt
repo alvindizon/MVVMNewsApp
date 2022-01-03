@@ -2,7 +2,7 @@ package com.androiddevs.mvvmnewsapp.domain.usecase
 
 import com.androiddevs.mvvmnewsapp.domain.NewsRepo
 import com.androiddevs.mvvmnewsapp.data.util.toDb
-import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.model.Article
 import javax.inject.Inject
 import javax.inject.Singleton
 

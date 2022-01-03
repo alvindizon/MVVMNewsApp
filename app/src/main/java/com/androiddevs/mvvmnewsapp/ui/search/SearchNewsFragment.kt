@@ -11,7 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.databinding.FragmentSearchNewsBinding
-import com.androiddevs.mvvmnewsapp.ui.NewsAdapter
+import com.androiddevs.mvvmnewsapp.ui.paging.NewsAdapter
 import com.androiddevs.mvvmnewsapp.ui.utils.setLoadStateListener
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint

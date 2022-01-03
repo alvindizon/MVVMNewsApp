@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.ui
+package com.androiddevs.mvvmnewsapp.ui.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

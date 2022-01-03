@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.ui.article
+package com.androiddevs.mvvmnewsapp.ui.webview
 
 import android.os.Bundle
 import android.view.View
@@ -12,9 +12,9 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ArticleFragment : Fragment(R.layout.fragment_article) {
+class ArticleWebViewFragment : Fragment(R.layout.fragment_article) {
 
-    private val args: ArticleFragmentArgs by navArgs()
+    private val args: ArticleWebViewFragmentArgs by navArgs()
 
     private val viewModel: ArticleViewModel by viewModels()
 

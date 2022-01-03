@@ -2,7 +2,7 @@ package com.androiddevs.mvvmnewsapp.data.util
 
 import com.androiddevs.mvvmnewsapp.data.api.model.ApiArticle
 import com.androiddevs.mvvmnewsapp.data.db.model.DbArticle
-import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.model.Article
 
 fun Article.toDb(): DbArticle {
     return DbArticle(

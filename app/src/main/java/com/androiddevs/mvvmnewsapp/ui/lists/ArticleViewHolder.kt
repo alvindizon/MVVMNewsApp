@@ -1,7 +1,8 @@
-package com.androiddevs.mvvmnewsapp.ui
+package com.androiddevs.mvvmnewsapp.ui.lists
 
 import androidx.recyclerview.widget.RecyclerView
 import com.androiddevs.mvvmnewsapp.databinding.ItemArticlePreviewBinding
+import com.androiddevs.mvvmnewsapp.ui.model.Article
 import com.bumptech.glide.Glide
 
 class ArticleViewHolder(

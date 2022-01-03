@@ -1,9 +1,9 @@
-package com.androiddevs.mvvmnewsapp.ui.article
+package com.androiddevs.mvvmnewsapp.ui.webview
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddevs.mvvmnewsapp.domain.usecase.SaveArticleUseCase
-import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.model.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject

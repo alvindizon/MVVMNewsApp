@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asFlow
 import androidx.paging.PagingData
 import com.androiddevs.mvvmnewsapp.domain.usecase.SearchNewsUseCase
-import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.model.Article
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow

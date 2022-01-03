@@ -4,9 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.androiddevs.mvvmnewsapp.databinding.ItemArticlePreviewBinding
-import com.androiddevs.mvvmnewsapp.ui.Article
-import com.androiddevs.mvvmnewsapp.ui.ArticleDiff
-import com.androiddevs.mvvmnewsapp.ui.ArticleViewHolder
+import com.androiddevs.mvvmnewsapp.ui.model.Article
+import com.androiddevs.mvvmnewsapp.ui.lists.ArticleDiff
+import com.androiddevs.mvvmnewsapp.ui.lists.ArticleViewHolder
 
 class SavedNewsAdapter(private val listener: (Article) -> Unit) :
     ListAdapter<Article, ArticleViewHolder>(ArticleDiff()) {
