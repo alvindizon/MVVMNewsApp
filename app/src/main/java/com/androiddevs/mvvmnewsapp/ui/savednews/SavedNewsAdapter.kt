@@ -1,15 +1,15 @@
-package com.androiddevs.mvvmnewsapp.ui
+package com.androiddevs.mvvmnewsapp.ui.savednews
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.androiddevs.mvvmnewsapp.databinding.ItemArticlePreviewBinding
-import com.bumptech.glide.Glide
+import com.androiddevs.mvvmnewsapp.ui.Article
+import com.androiddevs.mvvmnewsapp.ui.ArticleDiff
+import com.androiddevs.mvvmnewsapp.ui.ArticleViewHolder
 
-class NewsAdapter(private val listener: (Article) -> Unit) :
-    PagingDataAdapter<Article, ArticleViewHolder>(ArticleDiff()) {
+class SavedNewsAdapter(private val listener: (Article) -> Unit) :
+    ListAdapter<Article, ArticleViewHolder>(ArticleDiff()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
