@@ -13,6 +13,6 @@ interface ArticleDao {
     @Query("SELECT * FROM articles")
     fun getAllArticles() : Flow<List<DbArticle>>
 
-    @Delete
-    suspend fun deleteArticle(article: DbArticle)
+    @Query("DELETE FROM articles WHERE url = :articleUrl")
+    suspend fun deleteArticle(articleUrl: String)
 }

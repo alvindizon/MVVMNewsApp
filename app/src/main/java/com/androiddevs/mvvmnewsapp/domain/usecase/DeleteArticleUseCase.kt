@@ -1,15 +1,13 @@
 package com.androiddevs.mvvmnewsapp.domain.usecase
 
 import com.androiddevs.mvvmnewsapp.domain.NewsRepo
-import com.androiddevs.mvvmnewsapp.data.util.toDb
-import com.androiddevs.mvvmnewsapp.ui.Article
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 class DeleteArticleUseCase @Inject constructor(private val newsRepo: NewsRepo) {
 
-    suspend fun deleteArticle(article: Article) {
-        newsRepo.deleteArticle(article.toDb())
+    suspend fun deleteArticleByUrl(articleUrl: String) {
+        newsRepo.deleteArticleByUrl(articleUrl)
     }
 }

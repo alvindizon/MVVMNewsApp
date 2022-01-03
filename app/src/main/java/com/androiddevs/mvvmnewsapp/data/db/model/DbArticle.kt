@@ -4,10 +4,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
-@Entity(tableName = "articles")
+@Entity(tableName = "articles", primaryKeys = ["url"])
 data class DbArticle(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
     val author: String,
     val content: String,
     val description: String,

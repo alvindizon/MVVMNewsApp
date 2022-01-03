@@ -15,6 +15,6 @@ interface NewsRepo {
 
     fun searchNews(searchQuery: String): Flow<PagingData<ApiArticle>>
 
-    suspend fun deleteArticle(article: DbArticle)
+    suspend fun deleteArticleByUrl(articleUrl: String)
 }
 

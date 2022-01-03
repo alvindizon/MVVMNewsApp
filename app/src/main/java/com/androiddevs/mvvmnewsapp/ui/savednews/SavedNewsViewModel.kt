@@ -21,8 +21,8 @@ class SavedNewsViewModel @Inject constructor(
 
     fun onViewCreated(): Flow<List<Article>> = getSavedNewsUseCase.getSavedNews()
 
-    fun onItemSwipe(article: Article) = viewModelScope.launch {
-        deleteArticleUseCase.deleteArticle(article)
+    fun onItemSwipe(articleUrl: String) = viewModelScope.launch {
+        deleteArticleUseCase.deleteArticleByUrl(articleUrl)
     }
 
     fun onUndoClick(article: Article) = viewModelScope.launch {

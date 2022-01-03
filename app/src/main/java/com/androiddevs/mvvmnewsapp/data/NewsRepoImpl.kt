@@ -48,6 +48,6 @@ class NewsRepoImpl @Inject constructor(
         ).flow
     }
 
-    override suspend fun deleteArticle(article: DbArticle) =
-        db.articleDao().deleteArticle(article)
+    override suspend fun deleteArticleByUrl(articleUrl: String) =
+        db.articleDao().deleteArticle(articleUrl)
 }
